@@ -2,9 +2,9 @@
 
 DB Admin provides a simple interface to browse the data in the tables in a database and execute queries and view the results.
 
-![](doc/screenshots/tables.png)
+![](https://raw.github.com/pjb3/dbadmin/master/doc/screenshots/tables.png)
 
-![](doc/screenshots/query.png)
+![](https://raw.github.com/pjb3/dbadmin/master/doc/screenshots/query.png)
 
 ## Installation
 
