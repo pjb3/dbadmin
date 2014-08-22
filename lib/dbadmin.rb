@@ -27,7 +27,8 @@ class DBAdmin < Sinatra::Base
   def self.start(argv)
     options = {
       :Host => "localhost",
-      :Port => 8888
+      :Port => 8888,
+      :daemonize => true
     }
     parser = OptionParser.new do |o|
       o.on "-p", "--port PORT", "The port to run the web server on" do |arg|
@@ -36,6 +37,10 @@ class DBAdmin < Sinatra::Base
 
       o.on "-h", "--host HOST", "The host to run the web server on" do |arg|
         options[:Host] = arg
+      end
+
+      o.on "-f", "--foreground", "Run server in the foreground" do |arg|
+        options[:daemonize] = arg ? false : true
       end
 
       o.banner = "Usage: dbadmin [options] [db_url]\n\nExample: dbadmin -p 8080 mysql://user:pass@host/db\n\n"
@@ -48,6 +53,7 @@ class DBAdmin < Sinatra::Base
     url = parser.parse(argv).first
     if url
       connect(url)
+      puts "DB Admin now running at http://#{options[:Host]}:#{options[:Port]}"
     else
       puts parser
       exit 1
