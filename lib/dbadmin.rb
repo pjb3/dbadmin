@@ -9,6 +9,9 @@ class Symbol
 end
 
 class DBAdmin < Sinatra::Base
+
+  VERSION = "0.2.0"
+
   enable :sessions
   set :session_secret, "It's a secret to everyone"
 
@@ -53,7 +56,7 @@ class DBAdmin < Sinatra::Base
     url = parser.parse(argv).first
     if url
       connect(url)
-      puts "DB Admin now running at http://#{options[:Host]}:#{options[:Port]}"
+      puts "DB Admin #{VERSION} now running at http://#{options[:Host]}:#{options[:Port]}"
     else
       puts parser
       exit 1
