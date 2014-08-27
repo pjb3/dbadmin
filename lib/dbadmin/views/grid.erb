@@ -1,9 +1,13 @@
-<% row = @rows.first %>
-<table class="table table-striped table-bordered">
-  <% for column in @columns %>
+<% @rows.each_with_index do |row, i| %>
+  <table class="table table-striped table-bordered">
     <tr>
-      <th><%= column %></th>
-      <td><%= row[column] %></th>
+      <td colspan="2">Row <%= i + 1 %></td>
     </tr>
-  <% end %>
-</table>
+    <% for column in @columns %>
+      <tr>
+        <th><%= column %></th>
+        <td><%= row[column] %></th>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

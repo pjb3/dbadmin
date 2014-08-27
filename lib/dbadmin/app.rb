@@ -59,6 +59,7 @@ module DBAdmin
         @offset = params[:offset].to_i
         @rows = db[@sql].limit(@limit).all
         @columns = db[@sql].columns
+        @result_orientation = params[:result_orientation] == 'grid' ? 'grid' : 'list'
       end
       erb :query
     end
