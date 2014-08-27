@@ -4,6 +4,16 @@ DB Admin provides a simple interface to browse the data in the tables in a datab
 
 ![](https://raw.github.com/pjb3/dbadmin/master/doc/screenshots/tables.png)
 
+You can view the results in the traditional columns and rows table view:
+
+![](https://raw.github.com/pjb3/dbadmin/master/doc/screenshots/table_list.png)
+
+or for larger tables, you can view the results one row per column:
+
+![](https://raw.github.com/pjb3/dbadmin/master/doc/screenshots/table_grid.png)
+
+You can execute any SQL query and see the result:
+
 ![](https://raw.github.com/pjb3/dbadmin/master/doc/screenshots/query.png)
 
 ## Installation
@@ -12,7 +22,7 @@ DB Admin provides a simple interface to browse the data in the tables in a datab
 
 ## Usage
 
-    $ dbadmin mysql://root@localhost/myapp_development
+    $ dbadmin postgres://localhost/myapp_development
     $ open http://localhost:8888
 
 The argument to the dbadmin command is a URI representing the credentials/info needed to connect to the database.  The format is generally:
