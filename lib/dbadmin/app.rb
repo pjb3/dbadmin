@@ -6,8 +6,12 @@ module DBAdmin
     enable :sessions
     set :session_secret, "It's a secret to everyone"
 
+    def logger
+      @logger ||= Logger.new(STDOUT)
+    end
+
     def db
-      @db ||= Sequel.connect(ENV['DATABASE_URL'])
+      @db ||= Sequel.connect(ENV['DATABASE_URL'], logger: logger)
     end
 
     helpers do
@@ -57,8 +61,18 @@ module DBAdmin
         @limit = params[:limit].to_i
         @limit = 50 unless @limit > 0
         @offset = params[:offset].to_i
-        @rows = db[@sql].limit(@limit).all
-        @columns = db[@sql].columns
+        begin
+          # TODO: It would be nice to figure out how to get the rows
+          # and the column names by executing the query once
+          @rows = db[@sql].limit(@limit).all
+          @columns = db[@sql].limit(@limit).columns
+        rescue Sequel::DatabaseError => ex
+          @error = if ex.wrapped_exception
+            ex.wrapped_exception.message
+          else
+            ex.message
+          end
+        end
         @result_orientation = params[:result_orientation] == 'grid' ? 'grid' : 'list'
       end
       erb :query

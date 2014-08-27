@@ -5,7 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DBAdmin</title>
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <style type="text/css" media="screen">
+      #editor {
+          margin: 0;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+      }
+    </style>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/mousetrap.min.js"></script>
+    <script src="/js/mousetrap-global-bind.min.js"></script>
+    <script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      // Hook up ACE editor to all textareas with data-editor attribute
+      $(function () {
+          $('textarea[data-editor]').each(function () {
+              var textarea = $(this);
+
+              var mode = textarea.data('editor');
+
+              var editDiv = $('<div>', {
+                  position: 'absolute',
+                  width: textarea.width(),
+                  height: textarea.height(),
+                  'class': textarea.attr('class')
+              }).insertBefore(textarea);
+
+              textarea.hide();
+
+              var editor = ace.edit(editDiv[0]);
+              editor.renderer.setShowGutter(false);
+              editor.getSession().setValue(textarea.val());
+              editor.getSession().setMode("ace/mode/" + mode);
+              editor.setTheme("ace/theme/tomorrow");
+
+              // copy back to textarea on form submit...
+              textarea.closest('form').submit(function () {
+                  textarea.val(editor.getSession().getValue());
+              })
+
+          });
+      });
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -42,7 +89,5 @@
     <div class="container-fluid">
       <%= yield %>
     </div>
-    <script src="/js/jquery-1.11.1.js"></script>
-    <script src="/js/bootstrap.js"></script>
   </body>
 </html>

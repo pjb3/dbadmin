@@ -1,0 +1,11 @@
+- [ ] Store all custom queries in history
+- [ ] Save queries with a name
+- [ ] Embed within Rails app
+- [ ] Authentication/Authorization (just run save queries vs. write/save/edit queries)
+- [ ] Export to CSV
+- [ ] Generate Google Chart
+- [ ] Show table structure, columns, types, indexes, etc.
+- [ ] Custom limit
+- [ ] Display errors in table filter properly
+- [ ] Save last used result orientation in session
+- [ ] Get column names without duplicate query

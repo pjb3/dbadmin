@@ -5,8 +5,8 @@
     </tr>
     <% for column in @columns %>
       <tr>
-        <th><%= column %></th>
-        <td><%= row[column] %></th>
+        <th style="width: 1%; white-space: nowrap"><%= column %></th>
+        <td style="width: 99%"><%= row[column] %></th>
       </tr>
     <% end %>
   </table>
