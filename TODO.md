@@ -5,6 +5,7 @@
 - [ ] Export to CSV
 - [ ] Generate Google Chart
 - [ ] Show table structure, columns, types, indexes, etc.
+- [ ] Allow changing of sort by clicking on column header in table view
 - [ ] Custom limit
 - [ ] Display errors in table filter properly
 - [ ] Save last used result orientation in session
