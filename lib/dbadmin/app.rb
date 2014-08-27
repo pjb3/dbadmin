@@ -32,6 +32,11 @@ module DBAdmin
         @limit = 50 unless @limit > 0
         @offset = params[:offset].to_i
         ds = db[@table]
+        if params[:filter].present?
+          @filter = params[:filter]
+          ds = ds.where(@filter)
+        end
+        @result_orientation = params[:result_orientation] == 'grid' ? 'grid' : 'list'
         @columns = ds.columns
         @rows = ds.limit(@limit, @offset).all
         erb :tables

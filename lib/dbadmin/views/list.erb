@@ -1,0 +1,15 @@
+<table class="table table-striped table-bordered">
+  <tr>
+    <% for column in @columns %>
+      <th><%= column %></th>
+    <% end %>
+  </tr>
+
+  <% for row in @rows %>
+    <tr>
+      <% for column in @columns %>
+        <td><%= row[column] %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

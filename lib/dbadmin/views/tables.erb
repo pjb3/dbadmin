@@ -1,15 +1,27 @@
-<table class="table table-striped table-bordered">
-  <tr>
-    <% for column in @columns %>
-      <th><%= column %></th>
-    <% end %>
-  </tr>
-
-  <% for row in @rows %>
-    <tr>
-      <% for column in @columns %>
-        <td><%= row[column] %></td>
+<div class="row">
+  <div class="col-md-12">
+    <form method="get" role="form">
+      <div class="form-group col-md-10">
+        <input type="text" class="form-control" name="filter" value="<%= @filter %>" placeholder="Where">
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-filter"></span>
+      </button>
+      <% if @result_orientation == 'grid' %>
+        <button type="submit" name="result_orientation" value="list" class="btn btn-primary">
+          <span class="glyphicon glyphicon-th-list"></span>
+        </a>
+      <% else %>
+        <button type="submit" name="result_orientation" value="grid" class="btn btn-primary">
+          <span class="glyphicon glyphicon-th"></span>
+        </a>
       <% end %>
-    </tr>
-  <% end %>
-</table>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= erb @result_orientation.to_sym %>
+  </div>
+</div>
